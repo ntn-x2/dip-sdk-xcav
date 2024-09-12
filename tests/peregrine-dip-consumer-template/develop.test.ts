@@ -56,9 +56,9 @@ const providerAndConsumerSudoKeypair = keyring.addFromUri("//Alice")
 
 Kilt.ConfigService.set({ submitTxResolveOn: Kilt.Blockchain.IS_IN_BLOCK })
 
-const relayAddress = `ws://127.0.0.1:${process.env["RELAY_ALICE_RPC"]}`
-const providerAddress = `ws://127.0.0.1:${process.env["PROVIDER_ALICE_RPC"]}`
-const consumerAddress = `ws://127.0.0.1:${process.env["CONSUMER_ALICE_RPC"]}`
+const relayAddress = `wss://paseo-rpc.dwellir.com`
+const providerAddress = `wss://peregrine.kilt.io/parachain-public-ws/`
+const consumerAddress = `wss://rpc-paseo.xcavate.io:443`
 
 describe("V0", () => {
   // beforeAll
