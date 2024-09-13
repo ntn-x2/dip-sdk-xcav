@@ -52,12 +52,13 @@ const keyring = new Kilt.Utils.Keyring({
   type: "sr25519",
   ss58Format: Kilt.Utils.ss58Format,
 })
-const providerAndConsumerSudoKeypair = keyring.addFromUri("//Alice")
+const fundedPeregrineAccount = keyring.addFromMnemonic("oblige vessel adult truck frog run guitar lecture bargain fuel borrow rigid")
+const fundedXcavateAccount = keyring.addFromUri("//Alice")
 
 Kilt.ConfigService.set({ submitTxResolveOn: Kilt.Blockchain.IS_IN_BLOCK })
 
 const relayAddress = `wss://paseo-rpc.dwellir.com`
-const providerAddress = `wss://peregrine.kilt.io/parachain-public-ws/`
+const providerAddress = `wss://peregrine.kilt.io`
 const consumerAddress = `wss://rpc-paseo.xcavate.io:443`
 
 describe("V0", () => {
@@ -117,10 +118,10 @@ describe("V0", () => {
       await Promise.all([
         Kilt.Blockchain.signAndSubmitTx(
           balanceTransferTxOnProviderChain,
-          providerAndConsumerSudoKeypair,
+          fundedPeregrineAccount,
         ),
         balanceTransferTxOnConsumerChain.signAndSend(
-          providerAndConsumerSudoKeypair,
+          fundedXcavateAccount,
         ),
       ])
       const newDidKeypair = keyring.addFromMnemonic(
